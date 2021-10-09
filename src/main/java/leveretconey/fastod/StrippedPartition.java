@@ -1,12 +1,8 @@
 package leveretconey.fastod;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.sun.javafx.binding.StringFormatter;
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Predicate.Operator;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicate;
@@ -39,14 +35,13 @@ public class StrippedPartition {
             begins.add(0);
         }
         begins.add(data.getTupleCount());
-
     }
+
     public StrippedPartition(StrippedPartition origin){
         this.indexes=new ArrayList<>(origin.indexes);
         this.begins=new ArrayList<>(origin.begins);
         this.data=origin.data;
     }
-
 
 
     public StrippedPartition product(int attribute){
@@ -68,9 +63,8 @@ public class StrippedPartition {
                 subGroups.get(value).add(index);
             }
 
-
             for(List<Integer> newGroup:subGroups.values()){
-                if(newGroup.size()>1){
+                if(newGroup.size()>=1){
                     newBegins.add(fillPointer);
                     for (int i :newGroup) {
                         newIndexes.add(i);
@@ -79,7 +73,6 @@ public class StrippedPartition {
                 }
             }
         }
-
         this.indexes=newIndexes;
         this.begins=newBegins;
         begins.add(indexes.size());
@@ -202,6 +195,8 @@ public class StrippedPartition {
     }
 
     public long swapRemoveCount(SingleAttributePredicate left, int right){
+        System.out.println("swapRemoveCount");
+        System.out.println(this);
         int length=indexes.size();
         int[] vioCount=new int[length];
         boolean[] deleted=new boolean[length];
@@ -248,12 +243,103 @@ public class StrippedPartition {
         return result;
     }
 
+    public long swapRemoveCountEDBT(SingleAttributePredicate left, int right){
+        System.out.println("swapRemoveCountEDBT");
+        System.out.println(this);
+        List<Integer> sortedIndex = new ArrayList<>(indexes);
+        System.out.println(sortedIndex);
+        List<Integer> sortedBegin = new ArrayList<>(begins);
+        for(int beginPointer=0;beginPointer<sortedBegin.size()-1;beginPointer++) {
+            int groupBegin = sortedBegin.get(beginPointer);
+            int groupEnd = sortedBegin.get(beginPointer + 1);
+            List<Integer> part = sortedIndex.subList(groupBegin, groupEnd);
+            part.sort((A,B) -> {
+                if(data.get(A,left.attribute) == data.get(B,left.attribute))
+                    return data.get(A,right) - data.get(B,right);
+                else return data.get(A,left.attribute) - data.get(B,left.attribute);
+            });
+        }
+        System.out.println(sortedIndex);
+        return data.getTupleCount() - lengthOfLISBS(sortedIndex, right);
+    }
+
+    public long lengthOfLIS(List<Integer> index, int right){
+        System.out.println("lengthOfLIS");
+        int n = index.size();
+        int[] dp = new int[n];
+        int[] nums = new int[n];
+        for(int i = 0; i < n; i++){
+            nums[i] = data.get(index.get(i), right);
+            System.out.print(nums[i] + " ");
+        }
+        System.out.println();
+        int res = 0;
+        Arrays.fill(dp, 1);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                if(nums[j] <= nums[i]) dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+            res = Math.max(res, dp[i]);
+        }
+        System.out.println(res);
+        return res;
+    }
+
+    public long lengthOfLISBS(List<Integer> index, int right){
+        System.out.println("lengthOfLISBS");
+        int n = index.size();
+        int[] tails = new int[n];
+        int[] nums = new int[n];
+        for(int i = 0; i < n; i++){
+            nums[i] = data.get(index.get(i), right);
+            System.out.print(nums[i] + " ");
+        }
+        int res = 0;
+        System.out.println();
+        for(int num : nums) {
+            int i = 0, j = res;
+            while(i < j) {
+                int m = (i + j) / 2;
+                if(tails[m] <= num) i = m + 1;
+                else j = m;
+            }
+            tails[i] = num;
+            if(res == j) res++;
+        }
+        System.out.println(res);
+        return res;
+    }
+
     private int filteredDataFrameGet(DataFrame data,int tuple,SingleAttributePredicate column){
         int result=data.get(tuple,column.attribute);
         if (column.operator== Operator.greaterEqual){
             result=-result;
         }
         return result;
+    }
+
+    public static int lengthOfLIS(List<Integer> nums) {
+        int[] tails = new int[nums.size()];
+        int res = 0;
+        for(int num : nums) {
+            int i = 0, j = res;
+            while(i < j) {
+                int m = (i + j) / 2;
+                if(tails[m] <= num) i = m + 1;
+                else j = m;
+            }
+            tails[i] = num;
+            if(res == j) res++;
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        DataFrame data = DataFrame.fromCsv("data/test1.csv");
+        StrippedPartition sp = new StrippedPartition(data);
+        sp.product(0);
+        System.out.println(sp);
+
     }
 }
 

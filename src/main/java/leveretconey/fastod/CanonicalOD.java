@@ -65,6 +65,9 @@ public class CanonicalOD implements Comparable<CanonicalOD>{
 
     public boolean isValid(DataFrame data, double errorRateThreshold){
         StrippedPartition sp= StrippedPartition.getStrippedPartition(context,data);
+        System.out.println(this);
+        System.out.println("isValid left: "+left);
+        System.out.println(sp);
         if (errorRateThreshold==-1f){
             if(left==null){
                 splitCheckCount++;
@@ -77,10 +80,15 @@ public class CanonicalOD implements Comparable<CanonicalOD>{
         }else {
             long vioCount;
             if (left == null) {
+                System.out.println("split");
                 vioCount = sp.splitRemoveCount(right);
             } else {
-                vioCount = sp.swapRemoveCount(left,right);
+                System.out.println("swap");
+//                vioCount = sp.swapRemoveCount(left,right);
+                vioCount = sp.swapRemoveCountEDBT(left,right);
+                System.out.println("vioCount: " + vioCount);
             }
+            System.out.println();
             double errorRate = (double) vioCount /data.getTupleCount();
             return errorRate<errorRateThreshold;
         }

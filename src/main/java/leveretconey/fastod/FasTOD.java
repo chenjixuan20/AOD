@@ -62,10 +62,6 @@ public class FasTOD {
         this.timeLimit = timeLimit;
     }
 
-
-
-
-
     private boolean timeUp(){
         return timer.getTimeUsed()>=timeLimit;
     }
@@ -163,6 +159,7 @@ public class FasTOD {
                 ,timer.getTimeUsedInSecond(),fdcount+ocdcount,fdcount,ocdcount));
         return result;
     }
+
     private void computeODs(){
         Set<AttributeSet> contextThisLevel=contextInEachLevel.get(level);
         for(AttributeSet context : contextThisLevel){
@@ -313,4 +310,9 @@ public class FasTOD {
         contextInEachLevel.add(contextNextLevel);
     }
 
+    public static void main(String[] args) {
+        DataFrame data = DataFrame.fromCsv("data/test1.csv");
+        FasTOD f = new FasTOD(1000000,0.1);
+        System.out.println(f.discover(data));
+    }
 }

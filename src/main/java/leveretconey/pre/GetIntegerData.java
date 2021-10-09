@@ -5,18 +5,23 @@ import java.util.*;
 
 public class GetIntegerData {
 
-    public static List<List<String>> readCSV(String path) throws IOException {
+    public static List<List<String>> readCSV(String path, boolean hasTitle, String segmentation ) throws IOException {
         System.out.println("读文件开始");
         File csv = new File(path);
         BufferedReader br = new BufferedReader(new FileReader(csv));
-//        String firstLine = "";
-//        firstLine = br.readLine();
+        if(hasTitle){
+            String firstLine = "";
+            firstLine = br.readLine();
+        }
         String lineDta = "";
         List<List<String>> List = new ArrayList<>();
 
         while ((lineDta = br.readLine())!= null){
-//            List<String> stringListlist = Arrays.asList(lineDta.split(","));
-            List<String> stringListlist = Arrays.asList(lineDta.split(";"));
+            List<String> stringListlist = null;
+            if(segmentation.equals(","))
+                stringListlist = Arrays.asList(lineDta.split(","));
+            if(segmentation.equals(";"))
+                stringListlist = Arrays.asList(lineDta.split(";"));
             List.add(stringListlist);
         }
         System.out.println("读文件结束");
@@ -24,35 +29,30 @@ public class GetIntegerData {
     }
 
     public static void changeToInt(List<List<String>> listList){
+        if(listList.size() == 0) return;
         int len = listList.get(0).size();
         for(int i = 0; i < len; i++){
-            int index = 0;
-            int finalI = i;
-            Collections.sort(listList,new Comparator<List<String>>() {
+            int nowSort = i;
+            listList.sort(new Comparator<List<String>>() {
                 @Override
                 public int compare(List<String> o1, List<String> o2) {
                     List<String> list1 = new ArrayList<>(o1);
                     List<String> list2 = new ArrayList<>(o2);
-                    return list1.get(finalI).compareTo(list2.get(finalI));
+                    return list1.get(nowSort).compareTo(list2.get(nowSort));
                 }
             });
 
-            String pre = null;
-            String now;
+            String temp = listList.get(0).get(i);
+            int index = 0;
 
             for (int j = 0; j < listList.size(); j++) {
-                now =listList.get(j).get(i);
-                if (j == 0){
-//                    listList.get(j).set(i, Integer.toString(j));
-                    listList.get(j).set(i, Integer.toString(index));
-                }else if(now.compareTo(pre) == 0) {
-                    listList.get(j).set(i, Integer.toString(index));
-                }else{
+                if(temp.equals(listList.get(j).get(i))){
+                    listList.get(j).set(i, String.valueOf(index));
+                }else {
                     index++;
-//                    listList.get(j).set(i, Integer.toString(j));
-                    listList.get(j).set(i, Integer.toString(index++));
+                    temp = listList.get(j).get(i);
+                    listList.get(j).set(i, String.valueOf(index));
                 }
-                pre = now;
             }
         }
     }
@@ -61,10 +61,17 @@ public class GetIntegerData {
         System.out.println("写文件开始");
         File csv2 = new File(path);//CSV文件
         BufferedWriter bw = new BufferedWriter(new FileWriter(csv2,true));
+        int attributeNum = listList.get(0).size();
+        List<String> head = new ArrayList<>();
+        for(int i = 0; i < attributeNum; i++){
+            head.add(String.valueOf(i+1));
+        }
+        String h = String.join(",", head);
+        bw.write(h);
+        bw.newLine();
 
-
-        for(int i = 0; i < listList.size(); i++){
-            String s0 = String.join(",",listList.get(i));
+        for (List<String> strings : listList) {
+            String s0 = String.join(",", strings);
             bw.write(s0);
             bw.newLine();
         }
@@ -75,10 +82,10 @@ public class GetIntegerData {
 
     public static void main(String[] args) throws IOException {
 
-        List<List<String>> listList = readCSV("data/stringData/Horse 300 29.csv");
+        List<List<String>> listList = readCSV("data/exp/flight_1k-15.csv", true, ",");
 
         changeToInt(listList);
 
-        writeCSV(listList, "data/intData/Horse 300 29.csv");
+        writeCSV(listList, "data/exp/flight_1k-15-int.csv");
     }
 }

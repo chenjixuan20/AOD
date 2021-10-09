@@ -130,7 +130,6 @@ public class ALODTree {
         public ALODTreeNode[] children;
         private LexicographicalOrderDependency dependency;
 
-
         public boolean ancestorOf(ALODTreeNode descendant){
             int lengthDiff=descendant.toLOD().length()-toLOD().length();
             if (lengthDiff<0){
@@ -158,7 +157,6 @@ public class ALODTree {
             return true;
         }
 
-
         public ALODTreeNode getChild(SingleAttributePredicate predicate){
             if (children==null){
                 return null;
@@ -177,7 +175,8 @@ public class ALODTree {
             }
             for (int i = 0; i < states.length; i++) {
                 if (!states[i].upperBoundLessThan(errorRateThresholds[i])){
-                    return true;
+//                    return true;
+                    return false;
                 }
             }
             return false;
@@ -279,8 +278,6 @@ public class ALODTree {
         public boolean hasChild(SingleAttributePredicate predicate){
             return children!=null && children[predicate2Index(predicate)]!=null;
         }
-
-
 
         public void setStates(ValidationResultWithBound ...states) {
             this.states = states;

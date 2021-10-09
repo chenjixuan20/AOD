@@ -1,5 +1,6 @@
 package leveretconey.dependencyDiscover.Dependency;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -23,10 +24,16 @@ import leveretconey.util.Util;
 public class LexicographicalOrderDependency implements AbstractDependency {
     public SingleAttributePredicateList left=new SingleAttributePredicateList();
     public SingleAttributePredicateList right=new SingleAttributePredicateList();
+    public BigDecimal error_rate ;
+    public BigDecimal rank_measure;
 
     @Override
     public String toString() {
         return left+"->"+right;
+    }
+
+    public int getALLSize(){
+        return left.size()+right.size();
     }
 
     public LexicographicalOrderDependency(SingleAttributePredicateList left, SingleAttributePredicateList right) {

@@ -1,10 +1,7 @@
 package leveretconey.cocoa.multipleStandard;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.DoubleToIntFunction;
 
 import leveretconey.ReturnData;
@@ -49,6 +46,7 @@ public class DFSDiscovererWithMultipleStandard extends ALODDiscoverer {
     public  double sumRate = 0;
     public  int sumCount = 0;
     public List<String> aod = new ArrayList<>();
+    public static int count = 0;
 
     public static enum ValidatorType{
         G1,G3
@@ -88,16 +86,15 @@ public class DFSDiscovererWithMultipleStandard extends ALODDiscoverer {
 //        int maxSpCache          = 0;
         spCache                 = new TwoSideDFSSPCache(data,maxSpCache);
         //原始实验
-//        minimalityChecker       = new ALODMinimalityCheckerUseFD();
+        minimalityChecker       = new ALODMinimalityCheckerUseFD();
         //变体实验
-        minimalityChecker       = new ALODMinimalityCheckerConsiderSPChange(spCache);
+//        minimalityChecker       = new ALODMinimalityCheckerConsiderSPChange(spCache);
         traversalGateway        = new ComplexTimeGateway();
 //        traversalGateway        = Gateway.AlwaysOpen;
         ispCache                = new DFSISPCacheAttachedToNode(spCache);
         tree                    = new ALODTree(data,errorRateThresholds);
         odCount                 = 0;
         validators              =new ALODValidator[validatorTypes.length];
-
 
         for (int i = 0; i < validatorTypes.length; i++) {
             validators[i] = factory(validatorTypes[i]);
@@ -118,6 +115,19 @@ public class DFSDiscovererWithMultipleStandard extends ALODDiscoverer {
             Util.out(String.format("运行结束，用时%.3fs,发现od %d个"
             , timer.getTimeUsedInSecond(), odCount));
         }
+        int n = 0;
+        Queue<ALODTreeNode> queue = new LinkedList<>();
+        queue.add(tree.getRoot());
+        while(!queue.isEmpty()){
+            ALODTreeNode now = queue.poll();
+            if(now != null){
+                if(now.children != null){
+                    n += now.children.length;
+                    Collections.addAll(queue, now.children);
+                }
+            }
+        }
+        System.out.println(n);
         return result;
     }
 
@@ -161,10 +171,10 @@ public class DFSDiscovererWithMultipleStandard extends ALODDiscoverer {
         return new ReturnData(result, data);
     }
 
-
-
     
     private void search(ALODTreeNode parent){
+//        System.out.println(parent);
+        count++;
         if(parent.toLOD().toString().equals("6<=,10>=,1>=->4<=,2<=,3>=,9>=")){
             Util.out(timer.getTimeUsedInSecond());
             return;

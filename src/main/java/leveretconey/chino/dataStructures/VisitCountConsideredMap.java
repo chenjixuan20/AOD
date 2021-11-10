@@ -21,6 +21,7 @@ public class VisitCountConsideredMap<K,V> {
             }
         }
     }
+
     public boolean mayPut(K key){
         return remainingVisitCount.containsKey(key);
     }

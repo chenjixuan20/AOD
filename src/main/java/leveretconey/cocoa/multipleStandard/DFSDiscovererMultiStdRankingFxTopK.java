@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 import javafx.util.Pair;
-import leveretconey.ReturnData;
+import leveretconey.util.ReturnData;
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard.ValidatorType;
 import leveretconey.cocoa.ranking.LODRankingFunction;
 import leveretconey.cocoa.sample.DFSISPCacheAttachedToNode;
@@ -24,10 +24,8 @@ import leveretconey.dependencyDiscover.MinimalityChecker.ALODMinimalityCheckerUs
 import leveretconey.dependencyDiscover.MinimalityChecker.LODMinimalityChecker;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicate;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicateList;
-import leveretconey.dependencyDiscover.SPCache.SortedPartitionCache;
 import leveretconey.dependencyDiscover.SortedPartition.SortedPartition;
 import leveretconey.dependencyDiscover.Validator.ALODValidator;
-import leveretconey.orderap.ORDERSortedPartitionCache;
 import leveretconey.util.Gateway;
 import leveretconey.util.Gateway.ComplexTimeGateway;
 import leveretconey.util.Timer;

@@ -1,8 +1,5 @@
-package leveretconey.exp6.samplePairs;
+package leveretconey.exp.exp6.samplePairs;
 
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AttributeAndDirection {
     public static final int UP=1;

@@ -1,8 +1,7 @@
-package leveretconey.exp2and3;
+package leveretconey.exp.exp2and3;
 
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.dependencyDiscover.Data.DataFrame;
-import leveretconey.dependencyDiscover.Discoverer.ALODDiscoverer;
 
 import java.util.ArrayList;
 import java.util.List;

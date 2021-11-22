@@ -1,19 +1,14 @@
-package leveretconey.exp6.samplePairs;
+package leveretconey.exp.exp6.samplePairs;
 
 import leveretconey.util.Timer;
-import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
-import leveretconey.cocoa.sample.SubsetSampleALODDiscoverer;
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Dependency.LexicographicalOrderDependency;
-import leveretconey.dependencyDiscover.Discoverer.ALODDiscoverer;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-
-import static leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard.ValidatorType.G1;
 
 public class Sample {
     static List<AODCandidate> sampleReslut = new ArrayList<>();

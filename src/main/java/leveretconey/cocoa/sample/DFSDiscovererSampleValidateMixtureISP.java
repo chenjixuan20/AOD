@@ -3,7 +3,7 @@ package leveretconey.cocoa.sample;
 import java.util.Collection;
 import java.util.Random;
 
-import leveretconey.ReturnData;
+import leveretconey.util.ReturnData;
 import leveretconey.dependencyDiscover.MinimalityChecker.ALODMinimalityChecker;
 import leveretconey.cocoa.twoSideExpand.ALODTree;
 import leveretconey.cocoa.twoSideExpand.ALODTree.ALODTreeNode;

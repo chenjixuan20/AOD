@@ -1,4 +1,4 @@
-package leveretconey;
+package leveretconey.util;
 
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Dependency.LexicographicalOrderDependency;

@@ -2,7 +2,7 @@ package leveretconey.dependencyDiscover.Discoverer;
 
 import java.util.Collection;
 
-import leveretconey.ReturnData;
+import leveretconey.util.ReturnData;
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Dependency.AbstractDependency;
 

@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package leveretconey.exp6.samplePairs;
+package leveretconey.exp.exp6.samplePairs;
 
 import java.util.*;
 

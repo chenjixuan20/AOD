@@ -1,7 +1,7 @@
-package leveretconey.exp6;
+package leveretconey.exp.exp6;
 
 
-import leveretconey.ReturnData;
+import leveretconey.util.ReturnData;
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.cocoa.sample.SubsetSampleALODDiscoverer;
 import leveretconey.dependencyDiscover.Data.DataFrame;

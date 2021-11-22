@@ -2,24 +2,13 @@ package leveretconey.orderap;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
-import javax.sql.rowset.Predicate;
-
-import leveretconey.ReturnData;
-import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
-import leveretconey.cocoa.twoSideExpand.ALODTree;
+import leveretconey.util.ReturnData;
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Dependency.LexicographicalOrderDependency;
 import leveretconey.dependencyDiscover.Discoverer.ALODDiscoverer;
-import leveretconey.dependencyDiscover.MinimalityChecker.ALODMinimalityChecker;
-import leveretconey.dependencyDiscover.MinimalityChecker.ALODMinimalityCheckerUseFD;
-import leveretconey.dependencyDiscover.MinimalityChecker.LODMinimalityChecker;
 import leveretconey.dependencyDiscover.Predicate.Operator;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicate;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicateList;

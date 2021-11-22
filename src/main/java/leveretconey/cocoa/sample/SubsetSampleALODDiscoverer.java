@@ -5,14 +5,13 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import leveretconey.ReturnData;
+import leveretconey.util.ReturnData;
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Dependency.LexicographicalOrderDependency;
 import leveretconey.dependencyDiscover.Discoverer.ALODDiscoverer;
 import leveretconey.util.Util;
 
-import static leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard.ValidatorType.*;
 import static leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard.ValidatorType.G1;
 
 public class SubsetSampleALODDiscoverer extends ALODDiscoverer {

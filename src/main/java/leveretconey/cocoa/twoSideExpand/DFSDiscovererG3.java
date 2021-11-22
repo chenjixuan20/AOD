@@ -3,7 +3,7 @@ package leveretconey.cocoa.twoSideExpand;
 import java.util.Collection;
 import java.util.List;
 
-import leveretconey.ReturnData;
+import leveretconey.util.ReturnData;
 import leveretconey.cocoa.sample.DFSISPCacheAttachedToNode;
 import leveretconey.cocoa.sample.ValidatorForG3UsingISPCache;
 import leveretconey.cocoa.twoSideExpand.ALODTree.ALODTreeNode;

@@ -1,9 +1,7 @@
-package leveretconey.exp6.samplePairs;
+package leveretconey.exp.exp6.samplePairs;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AODCandidate {
     public List<AttributeAndDirection> left;

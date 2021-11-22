@@ -1,4 +1,4 @@
-package leveretconey.exp6;
+package leveretconey.exp.exp6;
 
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.cocoa.sample.SubsetSampleALODDiscoverer;

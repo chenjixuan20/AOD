@@ -1,4 +1,4 @@
-package leveretconey.exp6.samplePairs;
+package leveretconey.exp.exp6.samplePairs;
 
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicateList;
 

@@ -1,9 +1,8 @@
-package leveretconey.exp1;
+package leveretconey.exp.exp1;
 
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.cocoa.ranking.LODRFClassSquareSumOverAttriCount;
 import leveretconey.cocoa.ranking.LODRankingFunction;
-import leveretconey.cocoa.sample.SubsetSampleALODDiscoverer;
 import leveretconey.dependencyDiscover.Data.DataFrame;
 import leveretconey.dependencyDiscover.Dependency.LexicographicalOrderDependency;
 import leveretconey.dependencyDiscover.Discoverer.ALODDiscoverer;
@@ -13,9 +12,7 @@ import leveretconey.dependencyDiscover.Validator.Result.ValidationResultWithAccu
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import static leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard.ValidatorType.*;
 

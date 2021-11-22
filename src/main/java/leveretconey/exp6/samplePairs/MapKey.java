@@ -41,16 +41,6 @@ public class MapKey {
         return list;
     }
 
-    public static void main(String[] args) {
-        SingleAttributePredicateList list=SingleAttributePredicateList.fromString("10>=,2>=,3>=,4<=");
-        List<AttributeAndDirection> list1 = new ArrayList<>();
-        String[] strings = list.toString().split(",");
-        for(String s:strings){
-            System.out.println(s);
-        }
-        list1 = getIntList(list.toString().split(","));
-        System.out.println(list1);
-    }
 
     @Override
     public String toString() {

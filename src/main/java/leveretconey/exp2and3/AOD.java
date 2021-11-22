@@ -11,7 +11,7 @@ import static leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStand
 
 public class AOD {
     public static void main(String[] args) {
-        DataFrame data = DataFrame.fromCsv("data/test1.csv");
+        DataFrame data = DataFrame.fromCsv("data/exp1/fd 15.csv");
 
         // 原始的发现算法调用
         DFSDiscovererWithMultipleStandard discoverer =new DFSDiscovererWithMultipleStandard(G1,0.01);

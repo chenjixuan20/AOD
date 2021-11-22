@@ -1,6 +1,6 @@
 package leveretconey.exp6.samplePairs;
 
-import leveretconey.chino.util.Timer;
+import leveretconey.util.Timer;
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.cocoa.sample.SubsetSampleALODDiscoverer;
 import leveretconey.dependencyDiscover.Data.DataFrame;
@@ -628,77 +628,4 @@ public class Sample {
         return result;
     }
 
-    public static void main(String[] args) throws IOException {
-//        DataFrame data = DataFrame.fromCsv("data/exp1/echocardiogram.csv");
-//        DataFrame data = DataFrame.fromCsv("data/exp1/NCV 1000 19.csv");
-//        DataFrame data = DataFrame.fromCsv("data/exp1/echocardiogram.csv");
-//        DataFrame data = DataFrame.fromCsv("data/exp6/NCV 14.csv");
-//        DataFrame data = DataFrame.fromCsv("data/exp6/test.csv");
-        DataFrame data = DataFrame.fromCsv("data/exp6/NCV 300K 14.csv");
-
-        List<FdInfo> list = getFD("fd/NCV 300K 14.txt");
-        Map<Integer, List<List<Integer>>> map = getFdMap(list);
-        Timer timer2= new Timer();
-        ALODDiscoverer discoverer =new DFSDiscovererWithMultipleStandard(G1,0.001);
-        //对于DFSDiscovererWithMultipleStandard这个类，它实际使用的error rate以上面这行为准，下面这个是没用的（接口太烂）
-        Collection<LexicographicalOrderDependency> aods = discoverer.discover(data, 0.001);
-        System.out.println("aod: " + (double)timer2.getTimeUsed() / 1000.0 + "s");
-        System.out.println(aods);
-
-        SubsetSampleALODDiscoverer discoverer1 = new SubsetSampleALODDiscoverer(0.02, 0.001, 0.1);
-        Set<Set<Integer>> sets = discoverer1.newDiscoverPlusSet(data, 0.001);
-        System.gc();
-        Timer timer = new Timer();
-        DoSearch(data.getColumnCount(),data,sets, 0.001,map);
-        System.out.println("sample: " + (double)timer.getTimeUsed() / 1000.0 + "s");
-        System.out.println("sampleReslut");
-        System.out.println(sampleReslut);
-        System.out.println(sampleReslut.size());
-
-        List<MapKey> aodMapKey = new ArrayList<>();
-        for(LexicographicalOrderDependency aod : aods){
-            aodMapKey.add(new MapKey(aod.left, aod.right));
-        }
-        List<AODCandidate> aodList = new ArrayList<>();
-        for(MapKey m: aodMapKey){
-            AODCandidate aod = new AODCandidate(m.left, m.right);
-            aodList.add(aod);
-        }
-        System.out.println("aodList");
-        System.out.println(aodList);
-        System.out.println(aodList.size());
-
-        int countAOD = 0;
-        for(AODCandidate sample: sampleReslut){
-           if (aodList.contains(sample)){
-               countAOD++;
-           }
-        }
-        System.out.println("aods包含多个sampleResult中aod:" + countAOD);
-
-        int countSample = 0;
-        for(AODCandidate aod: aodList){
-            if(sampleReslut.contains(aod)){
-                countSample++;
-            }
-        }
-        System.out.println("sampleResult包含多少个aods中aod:" + countSample);
-
-    }
-
-//    public static void main(String[] args) throws IOException {
-//        List<FdInfo> list = getFD("fd/test.txt");
-//        System.out.println(list);
-//        Map<Integer, List<List<Integer>>> map = getFdMap(list);
-//        System.out.println(map);
-//
-//        List<Integer> list1 = new ArrayList<>();
-//        list1.add(2);
-//        list1.add(1);
-//        list1.add(5);
-//
-//
-//        System.out.println(isAttributeListMinimalFDInt(list1,map));
-//
-//    }
 }

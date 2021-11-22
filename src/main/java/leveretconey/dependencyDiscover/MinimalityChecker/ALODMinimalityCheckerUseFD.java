@@ -9,7 +9,6 @@ import java.util.Set;
 import leveretconey.dependencyDiscover.Predicate.Operator;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicate;
 import leveretconey.dependencyDiscover.Predicate.SingleAttributePredicateList;
-import leveretconey.fastod.AttributeSet;
 
 public class ALODMinimalityCheckerUseFD extends LODMinimalityChecker {
     private HashMap<Integer, Set<Long>>

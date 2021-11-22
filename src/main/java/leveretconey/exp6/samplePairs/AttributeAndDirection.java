@@ -34,19 +34,4 @@ public class AttributeAndDirection {
         return false;
     }
 
-    public static void main(String[] args) {
-        AttributeAndDirection A = new AttributeAndDirection(1,UP);
-        AttributeAndDirection B = new AttributeAndDirection(1,UP);
-        System.out.println(A==B);
-        System.out.println(A.equals(B));
-        List<AttributeAndDirection> a = new ArrayList<>();
-        List<AttributeAndDirection> b = new ArrayList<>();
-        a.add(A);
-        a.add(A);
-        b.add(B);
-        b.add(B);
-        System.out.println(a==b);
-        System.out.println(a.equals(b));
-
-    }
 }

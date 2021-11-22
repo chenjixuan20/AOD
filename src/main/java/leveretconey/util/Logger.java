@@ -1,4 +1,4 @@
-package leveretconey.chino.util;
+package leveretconey.util;
 
 public class Logger {
     private String outPutPath;

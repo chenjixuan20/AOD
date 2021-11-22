@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import leveretconey.chino.util.Timer;
+import leveretconey.util.Timer;
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard;
 import leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStandard.ValidatorType;
 import leveretconey.cocoa.sample.SubsetSampleALODDiscoverer;

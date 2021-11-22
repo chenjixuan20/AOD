@@ -59,36 +59,5 @@ public class AODCandidate {
         return false;
     }
 
-    public static void main(String[] args) {
-        AttributeAndDirection A = new AttributeAndDirection(1,AttributeAndDirection.UP);
-        AttributeAndDirection B = new AttributeAndDirection(1,AttributeAndDirection.UP);
-        AttributeAndDirection C = new AttributeAndDirection(2,AttributeAndDirection.UP);
-        AttributeAndDirection D = new AttributeAndDirection(2,AttributeAndDirection.UP);
-        AttributeAndDirection E = new AttributeAndDirection(3,AttributeAndDirection.UP);
-        System.out.println(A==B);
-        System.out.println(A.equals(B));
-        List<AttributeAndDirection> left = new ArrayList<>();
-        List<AttributeAndDirection> right = new ArrayList<>();
-        List<AttributeAndDirection> left1 = new ArrayList<>();
-        List<AttributeAndDirection> left2 = new ArrayList<>();
-        List<AttributeAndDirection> right1 = new ArrayList<>();
-        List<AttributeAndDirection> right2 = new ArrayList<>();
-        System.out.println(left.containsAll(left1));
-        left.add(A);
-        left1.add(B);
-        right.add(C);
-        right1.add(D);
-        left2.add(D);
-        right2.add(E);
-        AODCandidate test = new AODCandidate(left, right);
-        AODCandidate test1 = new AODCandidate(left1, right1);
-        AODCandidate test2 = new AODCandidate(left2, right2);
-        Set<AODCandidate> aod = new HashSet<>();
-        Set<AODCandidate> aod1 = new HashSet<>();
-        aod.add(test);
-        aod.add(test2);
-        aod1.add(test1);
-        System.out.println(aod.containsAll(aod1));
-    }
 
 }

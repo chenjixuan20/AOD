@@ -19,10 +19,9 @@ import static leveretconey.cocoa.multipleStandard.DFSDiscovererWithMultipleStand
 
 public class calcudateTimeForExp1 {
     public static void main(String[] args) {
-        DataFrame data = DataFrame.fromCsv("data/exp1/fd 15.csv");
-
+        DataFrame data = DataFrame.fromCsv("data/exp1/FLI/FLI 17.csv");
         //G1
-        ALODDiscoverer discoverer =new DFSDiscovererWithMultipleStandard(G1,0.0001);
+        ALODDiscoverer discoverer =new DFSDiscovererWithMultipleStandard(G1,0.01);
         //对于DFSDiscovererWithMultipleStandard这个类，它实际使用的error rate以上面这行为准，下面这个是没用的（接口太烂）
         Collection<LexicographicalOrderDependency> aods = discoverer.discover(data, 0.001);
         LODRankingFunction rankingFunction=new LODRFClassSquareSumOverAttriCount();
